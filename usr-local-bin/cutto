@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 01:37:18"
+    exit 1
+fi
+
+VIDEO_FILE=$(ls *.mp4 | head -n 1)
+
+if [ -z "$VIDEO_FILE" ]; then
+    echo "No .mp4 files found in the current directory."
+    exit 1
+fi
+
+echo "Video File: ${VIDEO_FILE}"
+
+TIMESTAMP="$1"
+OUTPUT_DIR="target"
+OUTPUT_FILE="${OUTPUT_DIR}/${VIDEO_FILE}"
+
+mkdir -p "${OUTPUT_DIR}"
+
+ffmpeg -i "${VIDEO_FILE}" -to "${TIMESTAMP}" -c copy -map 0 "${OUTPUT_FILE}"
+
+echo "Cut complete! Output is in ${OUTPUT_FILE}"

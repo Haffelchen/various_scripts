@@ -1,0 +1,49 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 video_file"
+    exit 1
+fi
+
+VIDEO_FILE="$1"
+
+RESOLUTION=$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 "$VIDEO_FILE")
+
+HEIGHT=$(echo $RESOLUTION | cut -d'x' -f2)
+
+classify_resolution() {
+    local HEIGHT="$1"
+
+    # Classify based on height
+    if (( HEIGHT >= 4320 )); then
+        echo "4320p"
+    elif (( HEIGHT >= 2160 )); then
+        echo "2160p"
+    elif (( HEIGHT >= 1080 )); then
+        echo "1080p"
+    elif (( HEIGHT >= 720 )); then
+        echo "720p"
+    elif (( HEIGHT >= 480 )); then
+        echo "480p"
+    elif (( HEIGHT >= 360 )); then
+        echo "360p"
+    elif (( HEIGHT >= 240 )); then
+        echo "240p"
+    else
+        echo "Unknown resolution"
+    fi
+}
+
+CLASSIFICATION=$(classify_resolution "$HEIGHT")
+
+echo "Resolution: $RESOLUTION"
+echo "Resolution classification: $CLASSIFICATION"
+
+BASENAME=$(basename "$VIDEO_FILE")
+BASENAME_NO_EXT="${BASENAME%.*}"
+EXTENSION="${BASENAME##*.}"
+NEW_FILENAME="${BASENAME_NO_EXT} [${CLASSIFICATION}].${EXTENSION}"
+
+echo "Renaming '$VIDEO_FILE' to '$NEW_FILENAME'"
+
+mv "$VIDEO_FILE" "$NEW_FILENAME"

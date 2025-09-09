@@ -1,0 +1,62 @@
+#!/bin/bash
+
+classify_resolution() {
+    local HEIGHT="$1"
+    
+    case "$HEIGHT" in 
+    [7-9]*|6[4-9]*)
+        echo "4320p"
+        ;;
+    [3-5]*|21[6-9]*|2[2-9]*)
+        echo "2160p"
+        ;;
+    1[0-8]*|19[0-7]*)
+        echo "1080p"
+        ;;
+    [8-9]*|7[0-1]*)
+        echo "720p"
+        ;;
+    4[8-9]*|[5-6]*)
+        echo "480p"
+        ;;
+    3[6-9]*)
+        echo "360p"
+        ;;
+    2[4-9]*)
+        echo "240p"
+        ;;
+    *)
+        echo "Unknown"
+        ;;
+    esac
+}
+
+read -p "This will automatically classify and rename the resolution for all nested files in the current dir. Continue? [Y/n] " -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    find . -type f \( -iname "*.mp4" -o -iname "*.mkv" -o -iname "*.mov" -o -iname "*.avi" -o -iname "*.wmv" \) -print0 | while IFS= read -r -d '' VIDEO_FILE; do
+        
+        echo "-----------------------------"
+        echo "Processing file: $VIDEO_FILE"
+        
+        RESOLUTION=$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 -i "$VIDEO_FILE")
+        HEIGHT=$(echo $RESOLUTION | cut -d'x' -f2)
+        CLASSIFICATION=$(classify_resolution "$HEIGHT")
+
+        echo "Resolution: $RESOLUTION"
+        echo "Resolution classification: $CLASSIFICATION"
+
+        BASENAME=$(basename -- "$VIDEO_FILE")
+        DIRNAME=$(dirname -- "$VIDEO_FILE")
+        BASENAME_NO_EXT="${BASENAME%.*}"
+        EXTENSION="${BASENAME##*.}"
+        NEW_FILENAME="${BASENAME_NO_EXT} [${CLASSIFICATION}].${EXTENSION}"
+
+        echo -e "Renaming: $VIDEO_FILE -> $DIRNAME/$NEW_FILENAME"
+    
+        mv "$VIDEO_FILE" "$DIRNAME/$NEW_FILENAME"
+    done
+else
+    echo "Batch renaming cancelled by user."
+fi

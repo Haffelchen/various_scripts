@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 'Artist Name'"
+    exit 1
+fi
+
+ARTIST_NAME="$1"
+VIDEO_FILE=$(ls *.mp4 | head -n 1)
+
+if [ -z "$VIDEO_FILE" ]; then
+    echo "No .mp4 files found in the current directory."
+    exit 1
+fi
+
+echo "Video File: ${VIDEO_FILE}"
+
+
+# Check if a file was found
+if [ -z "$VIDEO_FILE" ]; then
+    echo "No .mp4 files found in the current directory."
+    exit 1
+fi
+
+# Set the artist metadata using ffmpeg
+ffmpeg -i "$VIDEO_FILE" -c copy -metadata artist="$ARTIST_NAME" "temp_$VIDEO_FILE" && mv "temp_$VIDEO_FILE" "$VIDEO_FILE"
+
+echo "Artist metadata set to '$ARTIST_NAME' for file: $VIDEO_FILE"

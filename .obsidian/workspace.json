@@ -164,6 +164,12 @@
   },
   "active": "bd0227a0bc51fda3",
   "lastOpenFiles": [
+    "usr-local-bin/setartist",
+    "usr-local-bin/getresauto",
+    "usr-local-bin/getres",
+    "usr-local-bin/cutto",
+    "usr-local-bin/cutfrom",
+    "usr-local-bin",
     "metadata-stuff.md",
     "rename-nested-file-to-parent.md",
     "remove-timestamps.md",
