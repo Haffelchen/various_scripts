@@ -87,3 +87,51 @@ for f in *; do
     fi
 done
 ```
+
+
+---
+
+
+> Extract content between second last `_` and last `_` assuming theres some resolution classifier after the last underscore
+
+```bash
+#!/bin/bash
+
+OUTPUT_FILE="extracted_content.txt"
+
+> "$OUTPUT_FILE"
+
+for dir in */; do
+    dir="${dir%/}"
+
+    if [[ $dir =~ _([^_]+)_(144|240p|360p|480p|720p|1080p|1440p|2160p)$ ]]; then
+        echo "${BASH_REMATCH[1]}" >> "$OUTPUT_FILE"
+    fi
+done
+
+echo "Extraction complete. Content saved to $OUTPUT_FILE."
+```
+
+
+---
+
+
+> Extract content before first occurrence of ` - `
+
+```bash
+#!/bin/bash
+
+OUTPUT_FILE="extracted_content.txt"
+
+> "$OUTPUT_FILE"
+
+for dir in */; do
+    dir="${dir%/}"
+
+    if [[ $dir =~ ^([^\-]+)\ - ]]; then
+        echo "${BASH_REMATCH[1]}" >> "$OUTPUT_FILE"
+    fi
+done
+
+echo "Extraction complete. Content saved to $OUTPUT_FILE."
+```
