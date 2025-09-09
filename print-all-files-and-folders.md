@@ -11,7 +11,7 @@ OUTPUT_FILE="directory_contents.txt"
 
 echo "Listing all files and folders in current dir"
 
-for item in /*; do
+for item in *; do
     if [ -f "$item" ]; then
         echo "$(basename "$item")" >> "$OUTPUT_FILE"
     elif [ -d "$item" ]; then
@@ -31,7 +31,7 @@ echo "Contents have been written to $OUTPUT_FILE."
 
 echo "Listing all files and folders in current dir"
 
-for item in /*; do
+for item in *; do
     if [ -f "$item" ]; then
         echo "$(basename "$item")"
     elif [ -d "$item" ]; then
