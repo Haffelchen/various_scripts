@@ -3,14 +3,13 @@
 ```bash
 #!/bin/bash
 
-DIR="/path/to/dir"
-DURATION_THRESHOLD_SECONDS=300
+DURATION_THRESHOLD_SECONDS=180
 IGNORED_FOLDERS=("backdrops")
 OUTPUT_FILE="short_video_dirs.txt"
 
 > "$OUTPUT_FILE"
 
-find . -type f -name "$DIR/*.mp4" | while read -r file; do
+find . -type f -name "*.mp4" | while read -r file; do
     parent_dir=$(dirname "$file")
 
     for ignored_folder in "${IGNORED_FOLDERS[@]}"; do
