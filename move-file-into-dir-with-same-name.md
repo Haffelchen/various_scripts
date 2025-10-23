@@ -5,7 +5,7 @@
 ```bash
 #!/bin/bash
 
-find . -maxdepth 1 -type f -iname *.mp4 -exec bash -c '
+find . -maxdepth 1 -type f -iname "*.mp4" -exec bash -c '
   for file in "$@"; do
     # Extract the base name without the extension
     base="${file%.mp4}"

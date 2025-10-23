@@ -21,6 +21,8 @@ echo "All paths have been stored in $OUTPUT_FILE"
 
 > Auto fill missing Artist/Title Tags based on existing tags
 
+> This throws some weird errors where it says "mnt/path/to/dir.flac not found" (note the missing / at the beginning of the path). Happens with both absolute and relative. Doesn't throw for every file. Rerun the script until no more errors and files missing to process
+
 ```bash
 #!/bin/bash
 
@@ -95,6 +97,33 @@ echo "Metadata title set for all MP4 files in directory"
 ---
 
 
+> Set artist recursively
+
+```bash
+ARTIST="Artist Name"
+
+for DIR in */ ; do
+    if [ -d "$DIR" ]; then
+        for FILE_PATH in "$DIR"*.mp4; do
+            if [ ! -f "$FILE_PATH" ]; then
+                continue
+            fi
+
+            BASE_NAME=$(basename "$FILE_PATH" .mp4)
+            TEMP_FILE="${FILE_PATH}_temp.mp4"
+
+            ffmpeg -i "$FILE_PATH" -c copy -metadata artist="$ARTIST" "$TEMP_FILE" && mv "$TEMP_FILE" "$FILE_PATH"
+        done
+    fi
+done
+
+echo "Metadata artist set for all MP4 files in directory"
+```
+
+
+---
+
+
 > Set the title in the metadata of all mp4 files based on the respective filename, recursively
 
 ```bash
@@ -118,6 +147,45 @@ done
 echo "Metadata title set for all MP4 files in subdirectories."
 ```
 
+
+
+```bash
+#!/bin/bash
+
+for DIR in */ ; do
+    if [ -d "$DIR" ]; then
+        for FILE_PATH in "$DIR"*.mp4; do
+            if [ ! -f "$FILE_PATH" ]; then
+                continue
+            fi
+            
+            # Get base name without extension
+            BASE_NAME=$(basename "$FILE_PATH" .mp4)
+            TEMP_FILE="${FILE_PATH%.*}_temp.mp4"
+            
+            # Fetch current comment metadata
+            CURRENT_COMMENT=$(ffprobe -v error -show_entries format_tags=comment -of default=noprint_wrappers=1:nokey=1 "$FILE_PATH")
+            CURRENT_TITLE=$(ffprobe -v error -show_entries format_tags=title -of default=noprint_wrappers=1:nokey=1 "$FILE_PATH")
+            
+            echo "Current Comment: $CURRENT_COMMENT"
+            echo "Current Title: $CURRENT_TITLE"
+            
+            # If there's no current comment, set it to the old base name
+            # Otherwise, append the old base name to the current comment
+            if [ -z "$CURRENT_COMMENT" ]; then
+                NEW_COMMENT=$BASE_NAME
+            else
+                NEW_COMMENT="${CURRENT_COMMENT}; Old Title: ${CURRENT_TITLE}"
+            fi
+            
+            # Use ffmpeg to set title and update the comment
+            ffmpeg -i "$FILE_PATH" -c copy -metadata title="$BASE_NAME" -metadata comment="$NEW_COMMENT" "$TEMP_FILE" && mv -f "$TEMP_FILE" "$FILE_PATH"
+        done
+    fi
+done
+
+echo "Metadata title and comment updated for all MP4 files in subdirectories."
+```
 
 ---
 

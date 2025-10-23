@@ -26,6 +26,13 @@ ffmpeg -i "input.mkv" -codec copy "output.mp4"
 
 ---
 
+> Convert flac to mp3
+```bash
+ffmpeg -i "input.flac" -ab 320k "output.mp3"
+```
+
+---
+
 > Detect silence
 ```bash
 ffmpeg -i "Song.flac" -af silencedetect=noise=-30dB:d=5 -f null - 2>&1 | grep 'silence_'

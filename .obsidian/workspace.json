@@ -10,14 +10,37 @@
           {
             "id": "bd0227a0bc51fda3",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "rename-nested-file-to-parent.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "rename-nested-file-to-parent"
+            }
+          },
+          {
+            "id": "aad5fb65253dfe6f",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "metadata-stuff.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "metadata-stuff"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -90,6 +113,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "metadata-stuff.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +123,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for metadata-stuff"
             }
           },
           {
@@ -148,8 +172,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -162,16 +185,22 @@
       "bases:Create new base": false
     }
   },
-  "active": "bd0227a0bc51fda3",
+  "active": "aad5fb65253dfe6f",
   "lastOpenFiles": [
+    "rename-nested-file-to-parent.md",
+    "metadata-stuff.md",
+    "move-file-into-dir-with-same-name.md",
+    "ffmpeg.md",
+    "find-short-videos.md",
+    "bulk-move.md",
+    "regex-stuff.md",
+    "add-prefix-to-file.md",
     "usr-local-bin/setartist",
     "usr-local-bin/getresauto",
     "usr-local-bin/getres",
     "usr-local-bin/cutto",
     "usr-local-bin/cutfrom",
     "usr-local-bin",
-    "metadata-stuff.md",
-    "rename-nested-file-to-parent.md",
     "remove-timestamps.md",
     "remove-n-chars-from-name.md",
     "remove-n-chars-from-name_handle-duplicates.md",
@@ -179,11 +208,8 @@
     "print-all-files-and-folders.md",
     "print-all-files-and-folders-to-file.md",
     "move-files-to-year-and-month-dirs.md",
-    "move-file-into-dir-with-same-name.md",
     "move-file-in-dir-with-same-name.md",
-    "find-short-videos.md",
     "filename-as-metadata-title.md",
-    "bulk-move.md",
     "bring-files-up-one-dir.md",
     "auto-fill-missing-artist-tags.md"
   ]

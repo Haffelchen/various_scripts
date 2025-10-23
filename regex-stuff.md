@@ -135,3 +135,17 @@ done
 
 echo "Extraction complete. Content saved to $OUTPUT_FILE."
 ```
+
+---
+
+
+> Replace first 4 characters
+
+```bash
+for f in * ; do
+    if [[ -f "$f" ]]; then
+        new_f="${f:4}"
+        mv -- "$f" "$new_f"
+    fi
+done
+```
