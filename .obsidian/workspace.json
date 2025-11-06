@@ -38,6 +38,64 @@
               "icon": "lucide-file",
               "title": "metadata-stuff"
             }
+          },
+          {
+            "id": "1edaeb936a995d2c",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "move-file-into-dir-with-same-name.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "move-file-into-dir-with-same-name"
+            }
+          },
+          {
+            "id": "50fc2c454baeec28",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "bring-files-up-one-dir.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "bring-files-up-one-dir"
+            }
+          },
+          {
+            "id": "4c3684fe958a6ed9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "bulk-move.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "bulk-move"
+            }
+          },
+          {
+            "id": "b527262a94efda07",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "move-file-into-dir-with-same-name.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "move-file-into-dir-with-same-name"
+            }
           }
         ],
         "currentTab": 1
@@ -187,12 +245,14 @@
   },
   "active": "aad5fb65253dfe6f",
   "lastOpenFiles": [
-    "rename-nested-file-to-parent.md",
-    "metadata-stuff.md",
     "move-file-into-dir-with-same-name.md",
-    "ffmpeg.md",
-    "find-short-videos.md",
+    "metadata-stuff.md",
     "bulk-move.md",
+    "find-short-videos.md",
+    "rename-nested-file-to-parent.md",
+    "bring-files-up-one-dir.md",
+    "remove-timestamps.md",
+    "ffmpeg.md",
     "regex-stuff.md",
     "add-prefix-to-file.md",
     "usr-local-bin/setartist",
@@ -201,7 +261,6 @@
     "usr-local-bin/cutto",
     "usr-local-bin/cutfrom",
     "usr-local-bin",
-    "remove-timestamps.md",
     "remove-n-chars-from-name.md",
     "remove-n-chars-from-name_handle-duplicates.md",
     "recursively-extract-artist-from-filename.md",
@@ -210,7 +269,6 @@
     "move-files-to-year-and-month-dirs.md",
     "move-file-in-dir-with-same-name.md",
     "filename-as-metadata-title.md",
-    "bring-files-up-one-dir.md",
     "auto-fill-missing-artist-tags.md"
   ]
 }
